@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import SessionList from "./components/SessionList";
+import SessionDetails from "./components/SessionDetails";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [currSession, setCurrSession] = useState({});
+    const [visible, setVisible] = useState({
+        sessionList: true,
+        sessionDetails: false,
+    });
+
+    useEffect(() => {
+        console.log("App effect happening");
+        console.log("Visible is " + Object.entries(visible));
+        console.log("CurrSession is " + Object.entries(currSession));
+    }, [visible, currSession]);
+
+    return (
+        <div>
+            {visible.sessionList && (
+                <SessionList
+                    currSession={currSession}
+                    setCurrSession={setCurrSession}
+                    visible={visible}
+                    setVisible={setVisible}
+                />
+            )}
+            {visible.sessionDetails && (
+                <SessionDetails currSession={currSession} visible={visible} setVisible={setVisible} />
+            )}
+            {visible.sessionDetails && (
+                <button onClick={() => setVisible({ sessionList: true, sessionDetails: false })}>Back</button>
+            )}
+        </div>
+    );
+};
 
 export default App;
