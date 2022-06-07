@@ -1,10 +1,9 @@
 import React from "react";
 import Dashboard from "./Dashboard";
 import { Route, Switch, Redirect } from "react-router-dom";
-import SessionDet from "../components/SessionDet";
+import SessionDetails from "../components/Session/SessionDetails";
 import MainHeader from "../components/Navbar/MainHeader";
 import StudentForm from "../components/StudentForm/StudentForm";
-import Calendar from "../components/Calendar/Calendar";
 import StudentDetails from "../components/StudentDetails/StudentDetails";
 
 export default function App() {
@@ -22,13 +21,10 @@ export default function App() {
                         <Dashboard />
                     </Route>
                     <Route path="/session/:sessionId">
-                        <SessionDet />
+                        <SessionDetails />
                     </Route>
                     <Route path="/form">
                         <StudentForm></StudentForm>
-                    </Route>
-                    <Route path="/calendar">
-                        <Calendar />
                     </Route>
                     <Route path="/student/:studentId">
                         <StudentDetails />

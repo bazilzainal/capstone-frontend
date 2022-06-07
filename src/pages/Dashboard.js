@@ -1,23 +1,23 @@
-import moment from "moment";
-import React, { useEffect, useMemo, useState } from "react";
-import Dates from "../components/Dates";
+import React, { useEffect, useState } from "react";
+import Calendar from "react-calendar";
+import SessionDateList from "../components/Session/SessionDateList";
 
 const Dashboard = () => {
-    const [prevDate, setPrevDate] = useState();
-    const [currDate, setCurrDate] = useState(moment().format("YYYY-MM-DD"));
     const [visible, setVisible] = useState({
-        dateList: true
+        dateList: true,
     });
+    const [date, setDate] = useState(new Date());
 
     useEffect(() => {
-        console.log("Prevdate " + prevDate);
-    });
+        console.log("Date Value ");
+        console.log(date);
+    }, [date]);
 
     return (
         <div>
-            {visible.dateList && (
-                <Dates currDate={currDate} setCurrDate={setCurrDate} setPrevDate={setPrevDate} /> 
-            )}
+            <Calendar value={date} onChange={setDate} />
+            <SessionDateList date={date} />
+
         </div>
     );
 };

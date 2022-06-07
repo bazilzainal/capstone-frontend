@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import SessionDateList from "./SessionDateList";
+import SessionDateList from "./Session/SessionDateList";
 import moment from "moment";
 
-const Dates = ({ currDate, setCurrDate, setPrevDate }) => {
+const Dates = ({ currDate, setCurrDate }) => {
 
     const clickHandler = (date) => {
         console.log("Clicked");
         console.log(date);
         setCurrDate(date);
-        setPrevDate(currDate);
     };
 
     return (
@@ -57,7 +56,6 @@ const Dates = ({ currDate, setCurrDate, setPrevDate }) => {
                     </button>
                 </li>
             </ul>
-            <SessionDateList date={currDate} />
         </div>
     );
 };

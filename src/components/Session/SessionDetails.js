@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
-export default function SessionDet() {
+export default function SessionDetails() {
     const { sessionId } = useParams();
     const [session, setSession] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);

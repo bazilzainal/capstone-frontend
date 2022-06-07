@@ -42,7 +42,7 @@ export default function StudentDetails() {
             <h4>Sessions</h4>
             {student.participatesByStudentId.map((session) => {
                 return (
-                    <div>
+                    <div key={session.sessionId}>
                         <p>{session.sessionId}</p>
                     </div>
                 );

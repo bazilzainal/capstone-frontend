@@ -16,10 +16,6 @@ const MainHeader = () => {
           </li>
           <li>
             {/* <a href='/welcome'>Welcome</a> */}
-            <NavLink activeClassName={classes.active} to="/calendar">Calendar</NavLink>
-          </li>
-          <li>
-            {/* <a href='/welcome'>Welcome</a> */}
             <NavLink activeClassName={classes.active} to="/student/1">Student</NavLink>
           </li>
         </ul>
