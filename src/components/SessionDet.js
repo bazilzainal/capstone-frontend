@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-const SessionDetails = (props) => {
+export default function SessionDet() {
+    const { sessionId } = useParams();
     const [session, setSession] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
+
+    let history = useHistory();
 
     useEffect(() => {
         console.log("Detail effect happening");
         async function loadSession() {
-            const response = await fetch(`http://localhost:8080/sessions/${props.currSession}`);
+            const response = await fetch(`http://localhost:8080/sessions/${sessionId}`);
             if (!response.ok) {
                 console.log("something went wrong");
                 // oups! something went wrong
@@ -21,7 +26,8 @@ const SessionDetails = (props) => {
         }
 
         loadSession();
-    }, [props.currSession]);
+    }, [sessionId]);
+
 
     if (!isLoaded) {
         return <div>Loading...</div>;
@@ -29,21 +35,14 @@ const SessionDetails = (props) => {
 
     return (
         <div>
-            <h1>Test</h1>
-            <p>{session.sessionId}</p>
+            <h1>SessionDet</h1>
+            <h2>{sessionId}</h2>
             <p>{session.sessionName}</p>
             <p>{session.sessionDate}</p>
             <p>{session.sessionTime}</p>
             <p>{session.sessionDesc}</p>
-
-            {console.log("Line 32 session is " + Object.entries(session))}
-            {console.log("Line 33 session participants is " + session.participatesBySessionId)}
-
-            {session.participatesBySessionId.map((participant) => (
-                <p>{participant.studentId}</p>
-            ))}
+            
+            <button onClick={history.goBack}>Back</button>
         </div>
     );
-};
-
-export default SessionDetails;
+}
