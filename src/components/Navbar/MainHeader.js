@@ -12,7 +12,7 @@ const MainHeader = () => {
           </li>
           <li>
             {/* <a href='/welcome'>Welcome</a> */}
-            <NavLink activeClassName={classes.active} to="/form">TestForm</NavLink>
+            <NavLink activeClassName={classes.active} to="/form">Create a Session</NavLink>
           </li>
           <li>
             {/* <a href='/welcome'>Welcome</a> */}

@@ -3,8 +3,8 @@ import Dashboard from "./Dashboard";
 import { Route, Switch, Redirect } from "react-router-dom";
 import SessionDetails from "../components/Session/SessionDetails";
 import MainHeader from "../components/Navbar/MainHeader";
-import StudentForm from "../components/StudentForm/StudentForm";
 import StudentDetails from "../components/StudentDetails/StudentDetails";
+import SessionForm from "../components/StudentForm/SessionForm";
 
 export default function App() {
     return (
@@ -24,7 +24,7 @@ export default function App() {
                         <SessionDetails />
                     </Route>
                     <Route path="/form">
-                        <StudentForm></StudentForm>
+                        <SessionForm />
                     </Route>
                     <Route path="/student/:studentId">
                         <StudentDetails />
