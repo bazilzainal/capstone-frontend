@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 
 export default function StudentDetails() {
-    const [studentId, setStudentId] = useState(useParams().studentId);
+    const studentId = useParams().studentId;
+    // const [studentId, setStudentId] = useState(useParams().studentId);
     const [student, setStudent] = useState({});
     const [studentSessions, setStudentSessions] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -43,7 +44,7 @@ export default function StudentDetails() {
     }, [studentId]);
 
     useEffect(() => {
-        console.log("StudentDetails");
+        console.log("StudentDetails loaded");
         console.log(Object.entries(student));
     }, [student]);
 
@@ -60,13 +61,12 @@ export default function StudentDetails() {
 
             {studentSessions.map((session) => (
                 <div key={session.sessionId}>
-                    <h3>{session.sessionName}</h3>
+                    <h3>{session.sessionName} with {session.instructorFirstName}</h3>
                     <ul>
                         <li>Session ID: {session.sessionId}</li>
                         <li>Time: {moment(session.sessionTime, "HH:mm").format("HH:mmA").toString()}</li>
                         <li>Date: {moment(session.sessionDate).format("D MMM YYYY").toString()}</li>
                         <li>Instructor ID: {session.instructorId}</li>
-                        <li>Instructor Name: {session.instructorFirstName}</li>
                     </ul>
                 </div>
             ))}
