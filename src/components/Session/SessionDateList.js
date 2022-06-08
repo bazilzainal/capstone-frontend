@@ -27,8 +27,7 @@ const SessionDateList = ({ date }) => {
 
     return (
         <div>
-            <h1>Sessions</h1>
-            <h3>{date.toString()}</h3>
+            <h3>{momentDate}</h3>
             <ul>
                 {sessions.map((session) => (
                     <li key={session.sessionId}>
@@ -36,7 +35,6 @@ const SessionDateList = ({ date }) => {
                         <ul>
                             <li>Time: {moment(session.sessionTime, "HH:mm").format("HH:mmA").toString()}</li>
                             <li>Instructor ID: {session.instructorId}</li>
-                            <li>Description: {session.sessionDesc}</li>
                         </ul>
                     </li>
                 ))}

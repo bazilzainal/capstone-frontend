@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Calendar from "../components/Calendar/Calendar";
+import { Route, Switch, Redirect } from "react-router-dom";
 import SessionDateList from "../components/Session/SessionDateList";
 
 const Dashboard = () => {
-    const [visible, setVisible] = useState({
-        dateList: true,
-    });
+    const [visible, setVisible] = useState({});
     const [date, setDate] = useState(new Date());
 
     useEffect(() => {
@@ -17,7 +16,6 @@ const Dashboard = () => {
         <div>
             <Calendar value={date} onChange={setDate} />
             <SessionDateList date={date} />
-
         </div>
     );
 };

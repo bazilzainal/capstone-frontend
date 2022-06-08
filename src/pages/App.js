@@ -1,37 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Dashboard from "./Dashboard";
-import { Route, Switch, Redirect } from "react-router-dom";
-import SessionDetails from "../components/Session/SessionDetails";
 import MainHeader from "../components/Navbar/MainHeader";
-import StudentDetails from "../components/StudentDetails/StudentDetails";
-import SessionForm from "../components/StudentForm/SessionForm";
+import "./App.css";
+import DashContent from "./DashContent";
 
 export default function App() {
+    const [userId, setUserId] = useState(1);
+
     return (
         <div>
-            <header>
-                <MainHeader />
-            </header>
-            <main>
-                <Switch>
-                    <Route path="/" exact>
-                        <Redirect to="/dashboard" />
-                    </Route>
-                    <Route path="/dashboard">
-                        <Dashboard />
-                    </Route>
-                    <Route path="/session/:sessionId">
-                        <SessionDetails />
-                    </Route>
-                    <Route path="/form">
-                        <SessionForm />
-                    </Route>
-                    <Route path="/student/:studentId">
-                        <StudentDetails />
-                    </Route>
-
-                </Switch>
-            </main>
+            <div>
+                <header>
+                    <MainHeader userId={userId} />
+                </header>
+            </div>
+            <div className="container">
+                <main className="sidebar">
+                    <Dashboard />
+                </main>
+                <div className="content">
+                    <DashContent />
+                </div>
+            </div>
         </div>
     );
 }

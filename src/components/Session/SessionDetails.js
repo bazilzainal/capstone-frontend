@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
 export default function SessionDetails() {
     const { sessionId } = useParams();
     const [session, setSession] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
-
-    let history = useHistory();
 
     useEffect(() => {
         console.log("Detail effect happening");
@@ -28,7 +25,6 @@ export default function SessionDetails() {
         loadSession();
     }, [sessionId]);
 
-
     if (!isLoaded) {
         return <div>Loading...</div>;
     }
@@ -41,8 +37,6 @@ export default function SessionDetails() {
             <p>{session.sessionDate}</p>
             <p>{session.sessionTime}</p>
             <p>{session.sessionDesc}</p>
-            
-            <button onClick={history.goBack}>Back</button>
         </div>
     );
 }
