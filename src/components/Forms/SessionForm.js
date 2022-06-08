@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import timeValues from "./TimeVal";
 import moment from "moment";
 
-export default function SessionForm() {
+export default function SessionForm({ userDetails }) {
     const [formValues, setFormValues] = useState({
-        instructorId: 1,
+        instructorId: userDetails.id,
         sessionName: "Yoga",
         sessionDate: moment().format("YYYY-MM-DD"),
         sessionTime: "8:00:00",
@@ -49,7 +49,6 @@ export default function SessionForm() {
                         const error = (data && data.message) || response.status;
                         return Promise.reject(error);
                     }
-
                 })
                 .catch((error) => {
                     console.error("There was an error!", error);

@@ -1,7 +1,13 @@
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./MainHeader.module.css";
 
-const MainHeader = ({ userDetails }) => {
+const MainHeader = ({ userDetails, setUserDetails }) => {
+    useEffect(() => {
+        console.log("MainHeader");
+        console.log(userDetails);
+    }, [userDetails]);
+
     return (
         <header className={classes.header}>
             <nav>
@@ -18,6 +24,22 @@ const MainHeader = ({ userDetails }) => {
                             <NavLink activeClassName={classes.active} to="/form">
                                 Create a Session
                             </NavLink>
+                        </li>
+                    )}
+                    {userDetails.isLoggedIn && (
+                        <li>
+                            <button
+                                onClick={() => {
+                                    setUserDetails({
+                                        isLoggedIn: false,
+                                        isStudent: false,
+                                        isInstructor: false,
+                                        id: null,
+                                    });
+                                    localStorage.clear();
+                                }}>
+                                Logout
+                            </button>
                         </li>
                     )}
                 </ul>

@@ -4,17 +4,13 @@ import MainHeader from "../components/Navbar/MainHeader";
 import "./App.css";
 import DashContent from "./DashContent";
 
-export default function App() {
-    const [userDetails, setUserDetails] = useState({
-        isStudent: true,
-        isInstructor: true, //TODO remove this and implement "Login"
-        id: 2,
-    });
-
+export default function App({ userDetails, setUserDetails }) {
     return (
         <div>
             <div>
-                <header>{userDetails.isStudent && <MainHeader userDetails={userDetails} />}</header>
+                <header>
+                    <MainHeader userDetails={userDetails} setUserDetails={setUserDetails} />
+                </header>
             </div>
             <div className="container">
                 <main className="sidebar">
