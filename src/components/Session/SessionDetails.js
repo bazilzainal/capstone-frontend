@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-export default function SessionDetails() {
+export default function SessionDetails({ userDetails }) {
     const { sessionId } = useParams();
     const [session, setSession] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
     const [values, setValues] = useState({
-        sessionId: sessionId,
-        studentId: ""
+        sessionId: parseInt(sessionId),
+        studentId: userDetails.id,
     });
 
     useEffect(() => {
@@ -23,7 +23,6 @@ export default function SessionDetails() {
             const session = await response.json();
             setSession(session);
             setIsLoaded(true);
-            console.log("Line 16 " + session);
         }
 
         loadSession();
@@ -33,7 +32,39 @@ export default function SessionDetails() {
         e.preventDefault();
         console.log("Submitted values: ");
         console.log(values);
-    }
+
+        async function submit() {
+            // POST request using fetch with async/await
+            const requestOptions = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(values),
+            };
+
+            console.log("requestOptions: ");
+            console.log(requestOptions);
+
+            fetch("http://localhost:8080/participates", requestOptions)
+                .then(async (response) => {
+                    const isJson = response.headers.get("content-type")?.includes("application/json");
+                    const data = isJson && (await response.json());
+
+                    // check for error response
+                    if (!response.ok) {
+                        // get error message from body or default to response status
+                        console.log("Error: " + data.message || response.status);
+                        const error = (data && data.message) || response.status;
+                        return Promise.reject(error);
+                    }
+                })
+                .catch((error) => {
+                    console.error("There was an error!", error);
+                });
+        }
+
+        submit();
+        console.log("Form Submitted");
+    };
 
     if (!isLoaded) {
         return <div>Loading...</div>;
@@ -46,6 +77,7 @@ export default function SessionDetails() {
             <p>Date: {session.sessionDate}</p>
             <p>Time: {session.sessionTime}</p>
             <p>Description: {session.sessionDesc}</p>
+
             <button onClick={submitParticipation}>Submit</button>
         </div>
     );

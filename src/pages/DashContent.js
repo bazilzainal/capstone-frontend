@@ -14,7 +14,7 @@ export default function DashContent({ userDetails }) {
                 <StudentDetails />
             </Route>
             <Route path="/session/:sessionId">
-                <SessionDetails />
+                <SessionDetails userDetails={userDetails} />
             </Route>
             if (userDeails.isInstructor){" "}
             {
