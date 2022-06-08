@@ -36,9 +36,8 @@ export default function StudentDetails() {
 
     return (
         <div>
-            <h1>StudentDetails</h1>
+            <h2>Hello, {student.firstName}</h2>
             <h2>StudentId: {student.studentId}</h2>
-            <p>Name: {student.firstName}</p>
             <h4>Sessions</h4>
             {student.participatesByStudentId.map((session) => {
                 return (

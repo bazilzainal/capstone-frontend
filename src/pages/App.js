@@ -5,21 +5,23 @@ import "./App.css";
 import DashContent from "./DashContent";
 
 export default function App() {
-    const [userId, setUserId] = useState(1);
+    const [userDetails, setUserDetails] = useState({
+        isStudent: true,
+        isInstructor: true, //TODO remove this and implement "Login"
+        id: 2,
+    });
 
     return (
         <div>
             <div>
-                <header>
-                    <MainHeader userId={userId} />
-                </header>
+                <header>{userDetails.isStudent && <MainHeader userDetails={userDetails} />}</header>
             </div>
             <div className="container">
                 <main className="sidebar">
-                    <Dashboard />
+                    <Dashboard userDetails={userDetails} />
                 </main>
                 <div className="content">
-                    <DashContent />
+                    <DashContent userDetails={userDetails} />
                 </div>
             </div>
         </div>

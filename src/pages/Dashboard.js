@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Calendar from "../components/Calendar/Calendar";
-import { Route, Switch, Redirect } from "react-router-dom";
 import SessionDateList from "../components/Session/SessionDateList";
 
-const Dashboard = () => {
-    const [visible, setVisible] = useState({});
+const Dashboard = ({ userDetails }) => {
     const [date, setDate] = useState(new Date());
 
     useEffect(() => {

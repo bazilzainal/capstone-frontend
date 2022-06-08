@@ -5,6 +5,10 @@ export default function SessionDetails() {
     const { sessionId } = useParams();
     const [session, setSession] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
+    const [values, setValues] = useState({
+        sessionId: sessionId,
+        studentId: ""
+    });
 
     useEffect(() => {
         console.log("Detail effect happening");
@@ -25,18 +29,24 @@ export default function SessionDetails() {
         loadSession();
     }, [sessionId]);
 
+    const submitParticipation = async (e) => {
+        e.preventDefault();
+        console.log("Submitted values: ");
+        console.log(values);
+    }
+
     if (!isLoaded) {
         return <div>Loading...</div>;
     }
 
     return (
         <div>
-            <h1>SessionDet</h1>
-            <h2>{sessionId}</h2>
-            <p>{session.sessionName}</p>
-            <p>{session.sessionDate}</p>
-            <p>{session.sessionTime}</p>
-            <p>{session.sessionDesc}</p>
+            <h2>{session.sessionName}</h2>
+            <p>Session ID: {sessionId}</p>
+            <p>Date: {session.sessionDate}</p>
+            <p>Time: {session.sessionTime}</p>
+            <p>Description: {session.sessionDesc}</p>
+            <button onClick={submitParticipation}>Submit</button>
         </div>
     );
 }
