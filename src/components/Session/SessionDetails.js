@@ -51,6 +51,7 @@ export default function SessionDetails({ userDetails }) {
 
                     // check for error response
                     if (!response.ok) {
+                        console.log("Response text " + await response.text());
                         // get error message from body or default to response status
                         console.log("Error: " + data.message || response.status);
                         const error = (data && data.message) || response.status;

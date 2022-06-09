@@ -35,6 +35,7 @@ const SessionDateList = ({ date }) => {
                         <ul>
                             <li>Time: {moment(session.sessionTime, "HH:mm").format("HH:mmA").toString()}</li>
                             <li>Instructor ID: {session.instructorId}</li>
+                            <li>Instructor: {session.instructorFirstName}</li>
                         </ul>
                     </li>
                 ))}
