@@ -17,7 +17,7 @@
     align-items: center;
 }
 
-.sidebar-inner{
+.sidebar-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,4 +27,5 @@
     width: 70%;
     display: flex;
     justify-content: center;
+    padding: 0 10%;
 }

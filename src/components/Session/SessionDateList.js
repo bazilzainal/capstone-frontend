@@ -1,6 +1,7 @@
 import moment from "moment";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./Session.css";
 
 const SessionDateList = ({ date }) => {
     const [sessions, setSessions] = useState([]);
@@ -26,20 +27,42 @@ const SessionDateList = ({ date }) => {
     }, [momentDate]);
 
     return (
-        <div>
-            <h3>{momentDate}</h3>
-            <ul>
+        <div className="container">
+            {/* <ul className="session-list">
                 {sessions.map((session) => (
-                    <li key={session.sessionId}>
-                        <Link to={`/session/${session.sessionId}`}>{session.sessionName}</Link>
-                        <ul>
-                            <li>Time: {moment(session.sessionTime, "HH:mm").format("HH:mmA").toString()}</li>
-                            <li>Instructor ID: {session.instructorId}</li>
-                            <li>Instructor: {session.instructorFirstName}</li>
-                        </ul>
-                    </li>
+                    <Link to={`/session/${session.sessionId}`} key={session.sessionId}>
+                        <li key={session.sessionId} className="session-list-item">
+                            <div class="timeslot">
+                                {moment(session.sessionTime, "HH:mm:ss").format("hh.mm A").toString()}
+                            </div>
+                            <div>{session.sessionName}</div>
+                            <div>{session.instructorFirstName}</div>
+                        </li>
+                    </Link>
                 ))}
-            </ul>
+            </ul> */}
+
+            <table>
+                <tbody>
+                    {sessions.map((session) => (
+                        <tr key={session.sessionId}>
+                            <Link to={`/session/${session.sessionId}`}>
+                                <td>
+                                    <div className="timeslot">
+                                        {moment(session.sessionTime, "HH:mm:ss").format("hh.mm A").toString()}
+                                    </div>
+                                </td>
+                            </Link>
+                            <Link to={`/session/${session.sessionId}`}>
+                                <td>{session.sessionName}</td>
+                            </Link>
+                            <Link to={`/session/${session.sessionId}`}>
+                                <td>{session.instructorFirstName}</td>
+                            </Link>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 };
