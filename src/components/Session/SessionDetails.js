@@ -89,7 +89,7 @@ export default function SessionDetails({ userDetails }) {
             <p>Time: {session.sessionTime}</p>
             <p>Description: {session.sessionDesc}</p>
 
-            <button onClick={submitParticipation}>Join Class</button>
+            {userDetails.isStudent && <button onClick={submitParticipation}>Join Class</button>}
         </div>
     );
 }

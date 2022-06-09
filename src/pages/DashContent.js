@@ -25,6 +25,9 @@ export default function DashContent({ userDetails }) {
                     <Route path="/form">
                         <Form userDetails={userDetails} />
                     </Route>
+                    <Route path="/session/:sessionId">
+                        <SessionDetails userDetails={userDetails} />
+                    </Route>
                     <Route path="/" exact>
                         <h2>Welcome to the Instructor Dashboard</h2>
                     </Route>
