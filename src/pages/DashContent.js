@@ -8,7 +8,7 @@ export default function DashContent({ userDetails }) {
     return (
         <Switch>
             {userDetails.isStudent && (
-                <div>
+                <>
                     <Route path="/" exact>
                         <Redirect to={`/student/${userDetails.id}`} />
                     </Route>
@@ -18,18 +18,17 @@ export default function DashContent({ userDetails }) {
                     <Route path="/session/:sessionId">
                         <SessionDetails userDetails={userDetails} />
                     </Route>
-                </div>
+                </>
             )}
             {userDetails.isInstructor && (
-                <div>
-
-                <Route path="/form">
-                    <Form userDetails={userDetails} />
-                </Route>
-                <Route path="/" exact>
-                    <h2>Welcome to the Instructor Dashboard</h2>
-                </Route>
-                </div>
+                <>
+                    <Route path="/form">
+                        <Form userDetails={userDetails} />
+                    </Route>
+                    <Route path="/" exact>
+                        <h2>Welcome to the Instructor Dashboard</h2>
+                    </Route>
+                </>
             )}
 
             {/* route to 404 */}

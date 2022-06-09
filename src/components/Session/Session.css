@@ -14,41 +14,17 @@ tr:hover .timeslot {
 
 td a {
     display: block;
-    border: 1px solid black;
-    padding: 16px;
+    /* padding: 16px; */
 }
 
 td {
-    /* border: 1px solid black; */
+    border: 1px solid black;
+    text-align: center;
 }
 
-.container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.session-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.session-list-item {
-    display: flex;
-    flex-direction: row;
-    list-style-type: bullet;
-    align-items: center;
-    font-size: small;
-    justify-content: space-between;
-}
-
-.session-list-item:hover {
-    background-color: #faedcd;
-    color: #555;
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
 }
 
 .timeslot {
@@ -60,8 +36,9 @@ td {
     min-width: 1em;
     border-radius: 50%;
     vertical-align: middle;
-    padding: 4px;
-    font-size: 10px;
+    padding: 7px;
+    text-align: center;
+    font-size: 16px;
 }
 .timeslot:before {
     content: "";

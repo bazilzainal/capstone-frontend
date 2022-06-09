@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function SessionDetails({ userDetails }) {
     const { sessionId } = useParams();
@@ -10,8 +11,15 @@ export default function SessionDetails({ userDetails }) {
         studentId: userDetails.id,
     });
 
+    const history = useHistory();
+
+    const routeChange = () => {
+        let path = `/`;
+        history.push(path);
+    };
+
     useEffect(() => {
-        console.log("Detail effect happening");
+        console.log("Fetching session details");
         async function loadSession() {
             const response = await fetch(`http://localhost:8080/sessions/${sessionId}`);
             if (!response.ok) {
@@ -51,7 +59,7 @@ export default function SessionDetails({ userDetails }) {
 
                     // check for error response
                     if (!response.ok) {
-                        console.log("Response text " + await response.text());
+                        console.log("Response text " + (await response.text()));
                         // get error message from body or default to response status
                         console.log("Error: " + data.message || response.status);
                         const error = (data && data.message) || response.status;
@@ -61,10 +69,12 @@ export default function SessionDetails({ userDetails }) {
                 .catch((error) => {
                     console.error("There was an error!", error);
                 });
+            routeChange();
+            console.log("Route changed");
         }
 
         submit();
-        console.log("Form Submitted");
+        console.log("Values submitted");
     };
 
     if (!isLoaded) {
@@ -79,7 +89,7 @@ export default function SessionDetails({ userDetails }) {
             <p>Time: {session.sessionTime}</p>
             <p>Description: {session.sessionDesc}</p>
 
-            <button onClick={submitParticipation}>Submit</button>
+            <button onClick={submitParticipation}>Join Class</button>
         </div>
     );
 }

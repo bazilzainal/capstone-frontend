@@ -46,19 +46,19 @@ const SessionDateList = ({ date }) => {
                 <tbody>
                     {sessions.map((session) => (
                         <tr key={session.sessionId}>
-                            <Link to={`/session/${session.sessionId}`}>
-                                <td>
+                            <td>
+                                <Link to={`/session/${session.sessionId}`}>
                                     <div className="timeslot">
                                         {moment(session.sessionTime, "HH:mm:ss").format("hh.mm A").toString()}
                                     </div>
-                                </td>
-                            </Link>
-                            <Link to={`/session/${session.sessionId}`}>
-                                <td>{session.sessionName}</td>
-                            </Link>
-                            <Link to={`/session/${session.sessionId}`}>
-                                <td>{session.instructorFirstName}</td>
-                            </Link>
+                                </Link>
+                            </td>
+                            <td>
+                                <Link to={`/session/${session.sessionId}`}>{session.sessionName}</Link>
+                            </td>
+                            <td>
+                                <Link to={`/session/${session.sessionId}`}>{session.instructorFirstName}</Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
