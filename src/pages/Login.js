@@ -15,7 +15,7 @@ export default function Login() {
         id: 1,
     });
 
-    // Add userDetails to localStorage when value changes
+    // Add userDetails to localStorage when userDetails is set (i.e. after login)
     useEffect(() => {
         localStorage.setItem("userDetails", JSON.stringify(userDetails));
     }, [userDetails]);
@@ -91,16 +91,18 @@ export default function Login() {
                         </div>
                     </div>
                     <div>
-                        ID
                         <label>
-                            <select value={formValues.id} onChange={handleInputChange} name="id" id="userId">
+                            <select className="minimal" value={formValues.id} onChange={handleInputChange} name="id" id="userId">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
                             </select>
                         </label>
                     </div>
                 </div>
-                <button onClick={handleLogin}>Login</button>
+                <button className="login-button" onClick={handleLogin}>Login</button>
             </div>
         );
     }
