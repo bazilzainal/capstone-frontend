@@ -59,7 +59,7 @@ export default function InstructorDetails() {
                                         <BsCalendarDate /> {moment(session.sessionDate).format("D MMM YYYY").toString()}
                                     </li>
                                     <li>
-                                        <IoPeopleSharp /> {session.participatesBySessionId.length} students
+                                        <IoPeopleSharp /> {session.participatesBySessionId.length} student(s)
                                     </li>
                                 </ul>
                             </div>
