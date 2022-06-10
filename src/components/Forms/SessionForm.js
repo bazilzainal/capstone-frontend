@@ -10,7 +10,7 @@ export default function SessionForm({ userDetails }) {
         sessionName: "Yoga",
         sessionDate: moment().format("YYYY-MM-DD"),
         sessionTime: "8:00:00",
-        sessionDesc: "Some kind of Yoga",
+        sessionDesc: "Some description",
     });
     const history = useHistory();
 
@@ -27,8 +27,8 @@ export default function SessionForm({ userDetails }) {
         });
     };
 
-    const errorToast = () => {
-        toast.error("There's already a session in this slot. Be in the present. 🧘🏽 🧘🏽‍♀️", {
+    const errorToast = (message) => {
+        toast.error(message, {
             position: "top-right",
             autoClose: 3000,
             hideProgressBar: true,
@@ -70,6 +70,25 @@ export default function SessionForm({ userDetails }) {
         console.log("Submitted values: ");
         console.log(formValues);
 
+        if (formValues.sessionName.trim() === '') {
+            errorToast("Please enter a name for your class.");
+            setFormValues({
+                ...formValues,
+                sessionName: "Yoga",
+            });
+
+            return;
+        }
+
+        if (formValues.sessionDesc.trim() === '') {
+            errorToast("Please enter a description for your class.");
+            setFormValues({
+                ...formValues,
+                sessionDesc: "Some description",
+            });
+
+            return;
+        }
         let isError = false;
 
         async function submit() {
@@ -96,7 +115,7 @@ export default function SessionForm({ userDetails }) {
                         console.log("Error: " + data.message || response.status);
                         const error = (data && data.message) || response.status;
 
-                        errorToast();
+                        errorToast("There's already a session in this slot. Be in the present. 🧘🏽 🧘🏽‍♀️");
                         // routeChange(true);
                         return Promise.reject(error);
                     }
@@ -118,7 +137,7 @@ export default function SessionForm({ userDetails }) {
         // A component that renders a form for a student to fill out
         <div>
             <h1>Create a Session</h1>
-            <form onSubmit={handleSubmit}>
+            <form className="session-form" onSubmit={handleSubmit}>
                 <label for="session-name">Session Name:</label>
                 <input
                     id="session-name"

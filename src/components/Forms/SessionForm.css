@@ -18,3 +18,12 @@
     color: #fefae0;
     cursor: pointer;
 }
+
+.session-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.session-form textarea {
+    resize: none;
+}
