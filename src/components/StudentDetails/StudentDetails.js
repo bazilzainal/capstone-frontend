@@ -35,7 +35,7 @@ function StudentSessions({ student, studentId }) {
                     </h3>
                     <ul>
                         <li>
-                            <TbClock /> {moment(session.sessionTime, "HH:mm").format("HH:mmA").toString()}
+                            <TbClock /> {moment(session.sessionTime, "HH:mm").format("hh:mmA").toString()}
                         </li>
                         <li>
                             <BsCalendarDate /> {moment(session.sessionDate).format("D MMM YYYY").toString()}
