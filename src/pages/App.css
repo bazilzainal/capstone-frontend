@@ -16,10 +16,13 @@
 
 .login-items {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 50%;
+    width: 70%;
+}
+.login-items div {
+    display: flex;
 }
 
 .sidebar {
@@ -57,4 +60,27 @@ hr {
         rgba(212, 163, 115, 0)
     );
     width: 100%;
+}
+
+.radio input {
+    visibility:hidden;
+}
+.radio label {
+    cursor: pointer;
+    background-color: #faedcd;
+    width: 140px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.radio label:hover {
+    color: #D4A373;
+    background-color: #E9EDC9;
+}
+
+input:checked + label {
+    background-color: #E9EDC9;
+    color: #D4A373;
 }

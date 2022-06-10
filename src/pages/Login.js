@@ -65,34 +65,34 @@ export default function Login() {
 
         return (
             <div className="container login-main">
-                <div className="container login-items">
-                    <div className="radio">
-                        <label>
+                <div className="login-items">
+                    <div>
+                        <div className="radio">
                             <input
                                 type="radio"
                                 name="user"
                                 onChange={handleInputChange}
                                 value="student"
+                                id="student"
                                 checked={formValues.user === "student"}
                             />
-                            Student
-                        </label>
-                    </div>
-                    <div className="radio">
-                        <label>
+                            <label for="student">Student</label>
+                        </div>
+                        <div className="radio">
                             <input
                                 type="radio"
                                 name="user"
                                 onChange={handleInputChange}
                                 value="instructor"
+                                id="instructor"
                                 checked={formValues.user === "instructor"}
                             />
-                            Instructor
-                        </label>
+                            <label for="instructor">Instructor</label>
+                        </div>
                     </div>
-                    <div className="radio">
+                    <div>
+                        ID
                         <label>
-                            ID
                             <select value={formValues.id} onChange={handleInputChange} name="id" id="userId">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
