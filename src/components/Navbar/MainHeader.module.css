@@ -21,13 +21,17 @@
 
 .header li {
     margin: 0 1rem;
-    /* width: 5rem; */
 }
+
 
 .header a {
     color: #424242;
     transition: 0.3s;
     text-decoration: none;
+}
+
+a.logo {
+    font-size: larger;
 }
 
 .header a:hover,

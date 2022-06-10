@@ -13,7 +13,7 @@ const MainHeader = ({ userDetails, setUserDetails }) => {
             <nav>
                 <ul>
                     <li>
-                        <NavLink to={`/`}>
+                        <NavLink to={`/`} className={classes.logo}>
                             Book.it
                         </NavLink>
                     </li>
