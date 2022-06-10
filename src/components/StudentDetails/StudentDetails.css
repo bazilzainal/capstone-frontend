@@ -1,0 +1,58 @@
+.instructor-name {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #92a35b;
+}
+
+.session-name {
+    font-size: 1.5rem;
+    color: #D4A373;
+    font-weight: 400;
+}
+
+.session-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.session-container h3 {
+    font-style: normal;
+    font-weight: 100;
+    font-size: 1.45rem;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(212, 163, 115, 0), rgba(212, 163, 115, 0.75), rgba(212, 163, 115, 0));
+}
+
+.namaste {
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.student-greet {
+    color: #D4A373;
+
+}
+
+h4 {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+ul {
+    margin-top: 2%;
+    list-style: none;
+    padding: 0;
+}
+
+h3 {
+    margin-top: 5%;
+    margin-bottom: 0%;
+}

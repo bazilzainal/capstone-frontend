@@ -12,6 +12,11 @@ const MainHeader = ({ userDetails, setUserDetails }) => {
         <header className={classes.header}>
             <nav>
                 <ul>
+                    <li>
+                        <NavLink to={`/`}>
+                            Book.it
+                        </NavLink>
+                    </li>
                     {userDetails.isStudent && (
                         <li>
                             <NavLink activeClassName={classes.active} to={`/student/${userDetails.id}`}>
@@ -29,7 +34,7 @@ const MainHeader = ({ userDetails, setUserDetails }) => {
                     {userDetails.isLoggedIn && (
                         <li>
                             <button
-                            className={classes['logout-button']}
+                                className={classes["logout-button"]}
                                 onClick={() => {
                                     setUserDetails({
                                         isLoggedIn: false,

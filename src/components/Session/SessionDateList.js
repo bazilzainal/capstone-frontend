@@ -44,15 +44,15 @@ const SessionDateList = ({ date }) => {
     }, [momentDate]);
 
     return (
-        <div className="container">
+        <div className="list-container">
             <table>
                 <tbody>
                     {sessions.length != 0 &&
                         sessions.map((session) => (
                             <tr key={session.sessionId}>
-                                <td>
+                                <td className="bubble">
                                     <Link to={`/session/${session.sessionId}`}>
-                                        <div className="timeslot">
+                                        <div>
                                             {moment(session.sessionTime, "HH:mm:ss").format("hh.mm A").toString()}
                                         </div>
                                     </Link>

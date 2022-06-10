@@ -1,8 +1,9 @@
-.container {
+.list-container {
     align-items: flex-start;
+    font-size:medium
 }
 
-tr .timeslot{
+tr .bubble div{
     transition: 0.3s;
 }
 
@@ -16,44 +17,56 @@ tr:hover a {
     transition: 0.3s;
 }
 
-tr:hover .timeslot {
+tr:hover .bubble div {
     background-color: #fefae0;
     color: #424242;
 }
 
 td a {
     display: block;
-    /* padding: 16px; */
 }
 
 td {
-    /* border: 1px solid black; */
-    text-align: center;
+    text-align: start;
+}
+
+td:nth-child(2) {
+    width: 140px;
+    padding-left: 5%;
+
+}
+
+td:nth-child(3), td:nth-child(3) a {
+    width: 120px;
+    text-align: end;
+    color: #92a35b;
 }
 
 table {
-    /* border: 1px solid black; */
     border-collapse: collapse;
 }
 
-.timeslot {
+.bubble div {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     background-color: #d4a373;
     color: #fff;
     min-width: 1em;
+    width: 40px;
     border-radius: 50%;
     vertical-align: middle;
+    padding-left: 0%;
     padding: 7px;
     text-align: center;
-    font-size: 16px;
+    font-size: 12px;
     box-shadow: inset 0 0 0 2px #fefae0c5;
 }
-.timeslot:before {
+.bubble div:before {
     content: "";
     float: left;
     width: auto;
+    padding-left: 0%;
     padding-bottom: 100%;
 }
 

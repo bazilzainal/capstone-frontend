@@ -13,6 +13,7 @@ const Dashboard = ({ userDetails }) => {
     return (
         <div className="sidebar-inner">
             <Calendar value={date} onChange={setDate} />
+            <hr />
             <SessionDateList date={date} />
         </div>
     );
