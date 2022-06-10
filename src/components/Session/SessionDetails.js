@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { toast, Slide } from "react-toastify";
+import { TbClock } from "react-icons/tb";
+import { BsCalendarDate } from "react-icons/bs";
+import moment from "moment";
 
 export default function SessionDetails({ userDetails }) {
     const { sessionId } = useParams();
@@ -125,9 +128,8 @@ export default function SessionDetails({ userDetails }) {
     return (
         <div>
             <h2>{session.sessionName}</h2>
-            <p>Session ID: {sessionId}</p>
-            <p>Date: {session.sessionDate}</p>
-            <p>Time: {session.sessionTime}</p>
+            <p><BsCalendarDate /> {moment(session.sessionDate).format("ddd, DD MMMM yyyy").toString()}</p>
+            <p><TbClock /> {moment(session.sessionTime, "HH:mm").format("hh:mm A").toString()} – {moment(session.sessionTime, "HH:mm").add(1, 'hours').format("hh:mm A").toString()}</p>
             <p>Description: {session.sessionDesc}</p>
 
             {userDetails.isStudent && (
