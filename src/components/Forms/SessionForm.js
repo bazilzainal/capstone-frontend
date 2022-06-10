@@ -22,29 +22,34 @@ export default function SessionForm({ userDetails }) {
     }
 
     function handleSubmit(e) {
+        // Prevent page from refreshing
         e.preventDefault();
+
+        // TODO remove later
         console.log("Submitted values: ");
         console.log(formValues);
 
         async function submit() {
-            // POST request using fetch with async/await
+            // Set up our request
             const requestOptions = {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formValues),
             };
 
+            // TODO remove later
             console.log("requestOptions: ");
             console.log(requestOptions);
 
+            // POST request using fetch with async/await
             fetch("http://localhost:8080/sessions", requestOptions)
                 .then(async (response) => {
                     const isJson = response.headers.get("content-type")?.includes("application/json");
                     const data = isJson && (await response.json());
 
-                    // check for error response
+                    // Check for error response
                     if (!response.ok) {
-                        // get error message from body or default to response status
+                        // Get error message from body or default to response status
                         console.log("Error: " + data.message || response.status);
                         const error = (data && data.message) || response.status;
                         return Promise.reject(error);
@@ -71,7 +76,13 @@ export default function SessionForm({ userDetails }) {
                 <br />
                 <label>
                     Session Description:
-                    <textarea cols={40} rows={5} name="sessionDesc" value={formValues.sessionDesc} onChange={handleChange} />
+                    <textarea
+                        cols={40}
+                        rows={5}
+                        name="sessionDesc"
+                        value={formValues.sessionDesc}
+                        onChange={handleChange}
+                    />
                 </label>
                 <br />
                 <label>
@@ -84,7 +95,6 @@ export default function SessionForm({ userDetails }) {
                         onChange={handleChange}
                         // Ensure that only future dates are allowed
                         min={moment().format("YYYY-MM-DD").toString()}
-
                         // Ensure that only dates up to one month from now are allowed
                         max={moment().add(1, "month").format("YYYY-MM-DD").toString()}
                     />

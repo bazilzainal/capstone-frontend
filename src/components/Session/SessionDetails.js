@@ -14,7 +14,7 @@ export default function SessionDetails({ userDetails }) {
     const history = useHistory();
 
     const successToast = () => {
-        toast.success("🐶 Signed up! Time to be in the present.", {
+        toast.success("🐶 Signed up! Time to be present.", {
             position: "top-right",
             autoClose: 3000,
             hideProgressBar: true,
@@ -101,9 +101,7 @@ export default function SessionDetails({ userDetails }) {
                         console.log("Error: " + data.message || response.status);
                         const error = (data && data.message) || response.status;
 
-                        // Set isError to true to show error toast
-                        isError = true;
-                        routeChange(isError);
+                        routeChange(true);
                         return Promise.reject(error);
                     }
                 })
