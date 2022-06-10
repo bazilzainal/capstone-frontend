@@ -48,23 +48,35 @@ const SessionDateList = ({ date }) => {
             <table>
                 <tbody>
                     {sessions.length != 0 &&
-                        sessions.map((session) => (
-                            <tr key={session.sessionId}>
-                                <td className="bubble">
-                                    <Link to={`/session/${session.sessionId}`}>
-                                        <div>
-                                            {moment(session.sessionTime, "HH:mm:ss").format("hh.mm A").toString()}
-                                        </div>
-                                    </Link>
-                                </td>
-                                <td>
-                                    <Link to={`/session/${session.sessionId}`}>{session.sessionName}</Link>
-                                </td>
-                                <td>
-                                    <Link to={`/session/${session.sessionId}`}>{session.instructorFirstName}</Link>
-                                </td>
-                            </tr>
-                        ))}
+                        sessions.map(
+                            (session) => {
+
+                                // Only return timeslots that are after the current time
+                                return (
+                                    moment(session.sessionDate + "T" + session.sessionTime).isAfter(moment()) && (
+                                        <tr key={session.sessionId}>
+                                            <td className="bubble">
+                                                <Link to={`/session/${session.sessionId}`}>
+                                                    <div>
+                                                        {moment(session.sessionTime, "HH:mm:ss")
+                                                            .format("hh.mm A")
+                                                            .toString()}
+                                                    </div>
+                                                </Link>
+                                            </td>
+                                            <td>
+                                                <Link to={`/session/${session.sessionId}`}>{session.sessionName}</Link>
+                                            </td>
+                                            <td>
+                                                <Link to={`/session/${session.sessionId}`}>
+                                                    {session.instructorFirstName}
+                                                </Link>
+                                            </td>
+                                        </tr>
+                                    )
+                                );
+                            }
+                        )}
                     {sessions.length == 0 && (
                         <tr>
                             <td colSpan="3">
