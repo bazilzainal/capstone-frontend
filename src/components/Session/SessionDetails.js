@@ -18,13 +18,14 @@ export default function SessionDetails({ userDetails }) {
         history.push(path);
     };
 
+    // GET session details from server and set session state when sessionId changes
     useEffect(() => {
         console.log("Fetching session details");
         async function loadSession() {
             const response = await fetch(`http://localhost:8080/sessions/${sessionId}`);
             if (!response.ok) {
-                console.log("something went wrong");
-                // oups! something went wrong
+                console.log("Something went wrong");
+                // Oops! Something went wrong
                 return;
             }
 
@@ -36,6 +37,7 @@ export default function SessionDetails({ userDetails }) {
         loadSession();
     }, [sessionId]);
 
+    // POST request to create a new session
     const submitParticipation = async (e) => {
         e.preventDefault();
         console.log("Submitted values: ");
@@ -59,7 +61,6 @@ export default function SessionDetails({ userDetails }) {
 
                     // check for error response
                     if (!response.ok) {
-                        console.log("Response text " + (await response.text()));
                         // get error message from body or default to response status
                         console.log("Error: " + data.message || response.status);
                         const error = (data && data.message) || response.status;
@@ -89,7 +90,11 @@ export default function SessionDetails({ userDetails }) {
             <p>Time: {session.sessionTime}</p>
             <p>Description: {session.sessionDesc}</p>
 
-            {userDetails.isStudent && <button onClick={submitParticipation}>Join Class</button>}
+            {userDetails.isStudent && (
+                <button className="button" onClick={submitParticipation}>
+                    Join Class
+                </button>
+            )}
         </div>
     );
 }

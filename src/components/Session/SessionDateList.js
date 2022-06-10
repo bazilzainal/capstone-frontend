@@ -14,8 +14,8 @@ const SessionDateList = ({ date }) => {
         async function loadSessions() {
             const response = await fetch("http://localhost:8080/sessions/date/" + momentDate);
             if (!response.ok) {
-                console.log("something went wrong");
-                // oups! something went wrong
+                console.log("Something went wrong");
+                // Oops! Something went wrong
                 return;
             }
 
@@ -28,20 +28,6 @@ const SessionDateList = ({ date }) => {
 
     return (
         <div className="container">
-            {/* <ul className="session-list">
-                {sessions.map((session) => (
-                    <Link to={`/session/${session.sessionId}`} key={session.sessionId}>
-                        <li key={session.sessionId} className="session-list-item">
-                            <div class="timeslot">
-                                {moment(session.sessionTime, "HH:mm:ss").format("hh.mm A").toString()}
-                            </div>
-                            <div>{session.sessionName}</div>
-                            <div>{session.instructorFirstName}</div>
-                        </li>
-                    </Link>
-                ))}
-            </ul> */}
-
             <table>
                 <tbody>
                     {sessions.map((session) => (

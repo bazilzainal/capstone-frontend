@@ -14,8 +14,8 @@ export default function StudentDetails() {
         async function loadStudent() {
             const response = await fetch("http://localhost:8080/students/" + studentId);
             if (!response.ok) {
-                console.log("something went wrong");
-                // oups! something went wrong
+                console.log("Something went wrong");
+                // Oops! Something went wrong
                 return;
             }
 
@@ -31,8 +31,8 @@ export default function StudentDetails() {
         async function loadStudentSessions() {
             const response = await fetch("http://localhost:8080/sessions/student/" + studentId);
             if (!response.ok) {
-                console.log("something went wrong");
-                // oups! something went wrong
+                console.log("Something went wrong");
+                // Oops! Something went wrong
                 return;
             }
 
@@ -55,21 +55,26 @@ export default function StudentDetails() {
 
     return (
         <div>
-            <h2>Namaste, {student.firstName}</h2>
-            <p>Your Student ID is: {student.studentId}</p>
-            <h4>Sessions</h4>
-
-            {studentSessions.map((session) => (
-                <div key={session.sessionId}>
-                    <h3>{session.sessionName} with {session.instructorFirstName}</h3>
-                    <ul>
-                        <li>Session ID: {session.sessionId}</li>
-                        <li>Time: {moment(session.sessionTime, "HH:mm").format("HH:mmA").toString()}</li>
-                        <li>Date: {moment(session.sessionDate).format("D MMM YYYY").toString()}</li>
-                        <li>Instructor ID: {session.instructorId}</li>
-                    </ul>
-                </div>
-            ))}
+            <div>
+                <h2>Namaste, {student.firstName}</h2>
+                <p>Your Student ID is: {student.studentId}</p>
+            </div>
+            <div>
+                <h4>Here's what you have going on:</h4>
+                {studentSessions.map((session) => (
+                    <div key={session.sessionId}>
+                        <h3>
+                            {session.sessionName} with {session.instructorFirstName}
+                        </h3>
+                        <ul>
+                            <li>Session ID: {session.sessionId}</li>
+                            <li>Time: {moment(session.sessionTime, "HH:mm").format("HH:mmA").toString()}</li>
+                            <li>Date: {moment(session.sessionDate).format("D MMM YYYY").toString()}</li>
+                            <li>Instructor ID: {session.instructorId}</li>
+                        </ul>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

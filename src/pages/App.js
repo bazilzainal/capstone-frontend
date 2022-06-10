@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Dashboard from "./Dashboard";
 import MainHeader from "../components/Navbar/MainHeader";
-import "./App.css";
 import DashContent from "./DashContent";
 
 export default function App({ userDetails, setUserDetails }) {

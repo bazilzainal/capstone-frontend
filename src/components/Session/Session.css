@@ -1,15 +1,24 @@
+.container {
+    align-items: flex-start;
+}
+
+tr .timeslot{
+    transition: 0.3s;
+}
+
 tr a {
     text-decoration: none; /* no underline */
     color: #555;
 }
 
 tr:hover a {
-    color: aqua;
+    color: #d4a373;
+    transition: 0.3s;
 }
 
 tr:hover .timeslot {
-    background-color: yellow;
-    color: #555;
+    background-color: #fefae0;
+    color: #424242;
 }
 
 td a {
@@ -18,12 +27,12 @@ td a {
 }
 
 td {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     text-align: center;
 }
 
 table {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-collapse: collapse;
 }
 
@@ -31,18 +40,40 @@ table {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: #555;
-    color: yellow;
+    background-color: #d4a373;
+    color: #fff;
     min-width: 1em;
     border-radius: 50%;
     vertical-align: middle;
     padding: 7px;
     text-align: center;
     font-size: 16px;
+    box-shadow: inset 0 0 0 2px #fefae0c5;
 }
 .timeslot:before {
     content: "";
     float: left;
     width: auto;
     padding-bottom: 100%;
+}
+
+.button {
+    background-color: #e9edc9; /* Green */
+    border: none;
+    border-radius: 5px;
+    color: #777777;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: inherit;
+    box-shadow: #77777770 0.5px 0.5px 0px 0.2px;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background-color: #d4a373; /* Green */
+    color: #fefae0;
+    cursor: pointer;
 }

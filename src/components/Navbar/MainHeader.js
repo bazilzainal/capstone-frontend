@@ -29,6 +29,7 @@ const MainHeader = ({ userDetails, setUserDetails }) => {
                     {userDetails.isLoggedIn && (
                         <li>
                             <button
+                            className={classes['logout-button']}
                                 onClick={() => {
                                     setUserDetails({
                                         isLoggedIn: false,

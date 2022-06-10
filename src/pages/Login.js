@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import App from "./App";
 import { Route, Switch, Redirect } from "react-router-dom";
+import "./App.css";
 
 export default function Login() {
     const [userDetails, setUserDetails] = useState(JSON.parse(localStorage.getItem("userDetails")) || {});
@@ -63,8 +64,8 @@ export default function Login() {
         };
 
         return (
-            <div>
-                <div>
+            <div className="container login-main">
+                <div className="container login-items">
                     <div className="radio">
                         <label>
                             <input

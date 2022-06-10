@@ -71,7 +71,7 @@ export default function SessionForm({ userDetails }) {
                 <br />
                 <label>
                     Session Description:
-                    <input type="text" name="sessionDesc" value={formValues.sessionDesc} onChange={handleChange} />
+                    <textarea cols={40} rows={5} name="sessionDesc" value={formValues.sessionDesc} onChange={handleChange} />
                 </label>
                 <br />
                 <label>
@@ -82,6 +82,11 @@ export default function SessionForm({ userDetails }) {
                         id="sessionDate"
                         value={formValues.sessionDate}
                         onChange={handleChange}
+                        // Ensure that only future dates are allowed
+                        min={moment().format("YYYY-MM-DD").toString()}
+
+                        // Ensure that only dates up to one month from now are allowed
+                        max={moment().add(1, "month").format("YYYY-MM-DD").toString()}
                     />
                 </label>
                 <br />
