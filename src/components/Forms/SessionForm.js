@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import timeValues from "./TimeVal";
 import moment from "moment";
+import { toast, Slide } from "react-toastify";
+import { useParams, useHistory } from "react-router-dom";
 
 export default function SessionForm({ userDetails }) {
     const [formValues, setFormValues] = useState({
@@ -10,6 +12,45 @@ export default function SessionForm({ userDetails }) {
         sessionTime: "8:00:00",
         sessionDesc: "Some kind of Yoga",
     });
+    const history = useHistory();
+
+    const successToast = () => {
+        toast.success("Namaste, your class has been listed. 🙏🏽", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            transition: Slide,
+        });
+    };
+
+    const errorToast = () => {
+        toast.error("There's already a session in this slot. Be in the present. 🧘🏽 🧘🏽‍♀️", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            transition: Slide,
+        });
+    };
+
+    const routeChange = (isError) => {
+        console.log("Error in routeChange: ", isError);
+        if (isError) {
+            errorToast();
+        } else {
+            successToast();
+        }
+
+        let path = `/`;
+        history.push(path);
+    };
 
     function handleChange(event) {
         const target = event.target;
@@ -28,6 +69,8 @@ export default function SessionForm({ userDetails }) {
         // TODO remove later
         console.log("Submitted values: ");
         console.log(formValues);
+
+        let isError = false;
 
         async function submit() {
             // Set up our request
@@ -52,8 +95,15 @@ export default function SessionForm({ userDetails }) {
                         // Get error message from body or default to response status
                         console.log("Error: " + data.message || response.status);
                         const error = (data && data.message) || response.status;
+
+                        errorToast();
+                        // routeChange(true);
                         return Promise.reject(error);
                     }
+                })
+                .then(() => {
+                    routeChange(isError);
+                    console.log("Route changed");
                 })
                 .catch((error) => {
                     console.error("There was an error!", error);
@@ -69,51 +119,50 @@ export default function SessionForm({ userDetails }) {
         <div>
             <h1>Create a Session</h1>
             <form onSubmit={handleSubmit}>
-                <label>
-                    Session Name:
-                    <input type="text" name="sessionName" value={formValues.sessionName} onChange={handleChange} />
-                </label>
+                <label for="session-name">Session Name:</label>
+                <input
+                    id="session-name"
+                    type="text"
+                    name="sessionName"
+                    value={formValues.sessionName}
+                    onChange={handleChange}
+                />
                 <br />
-                <label>
-                    Session Description:
-                    <textarea
-                        cols={40}
-                        rows={5}
-                        name="sessionDesc"
-                        value={formValues.sessionDesc}
-                        onChange={handleChange}
-                    />
-                </label>
+                <label for="session-desc">Session Description:</label>
+                <textarea
+                    id="session-desc"
+                    cols={40}
+                    rows={5}
+                    name="sessionDesc"
+                    value={formValues.sessionDesc}
+                    onChange={handleChange}
+                />
                 <br />
-                <label>
-                    Date
-                    <input
-                        type="date"
-                        name="sessionDate"
-                        id="sessionDate"
-                        value={formValues.sessionDate}
-                        onChange={handleChange}
-                        // Ensure that only future dates are allowed
-                        min={moment().format("YYYY-MM-DD").toString()}
-                        // Ensure that only dates up to one month from now are allowed
-                        max={moment().add(1, "month").format("YYYY-MM-DD").toString()}
-                    />
-                </label>
+                <label for="session-date">Date:</label>
+                <input
+                    id="session-date"
+                    type="date"
+                    name="sessionDate"
+                    value={formValues.sessionDate}
+                    onChange={handleChange}
+                    // Ensure that only future dates are allowed
+                    min={moment().format("YYYY-MM-DD").toString()}
+                    // Ensure that only dates up to one month from now are allowed
+                    max={moment().add(1, "month").format("YYYY-MM-DD").toString()}
+                />
                 <br />
-                <label>
-                    Time
-                    <select value={formValues.sessionTime} onChange={handleChange} name="sessionTime" id="sessionTime">
-                        {timeValues.map((time, index) => {
-                            return (
-                                <option key={index} value={time}>
-                                    {time}
-                                </option>
-                            );
-                        })}
-                    </select>
-                </label>
+                <label for="session-time">Time:</label>
+                <select value={formValues.sessionTime} onChange={handleChange} name="sessionTime" id="session-time">
+                    {timeValues.map((time, index) => {
+                        return (
+                            <option key={index} value={time}>
+                                {time}
+                            </option>
+                        );
+                    })}
+                </select>
                 <br />
-                <button type="submit">Submit</button>
+                <button className="button" type="submit">Submit</button>
             </form>
         </div>
     );

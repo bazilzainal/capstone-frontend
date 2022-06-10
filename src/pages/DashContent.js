@@ -1,7 +1,8 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import SessionDetails from "../components/Session/SessionDetails";
-import StudentDetails from "../components/StudentDetails/StudentDetails";
+import StudentDetails from "../components/StudentDash/StudentDetails";
+import InstructorDetails from "../components/InstructorDash/InstructorDetails";
 import Form from "../components/Forms/Form";
 
 export default function DashContent({ userDetails }) {
@@ -28,8 +29,11 @@ export default function DashContent({ userDetails }) {
                     <Route path="/session/:sessionId">
                         <SessionDetails userDetails={userDetails} />
                     </Route>
+                    <Route path={`/instructor/:instructorId`}>
+                       <InstructorDetails />
+                    </Route>
                     <Route path="/" exact>
-                        <h2>Welcome to the Instructor Dashboard</h2>
+                        <Redirect to={`/instructor/${userDetails.id}`} />
                     </Route>
                 </>
             )}
