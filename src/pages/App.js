@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Dashboard from "./Dashboard";
 import MainHeader from "../components/Navbar/MainHeader";
 import DashContent from "./DashContent";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App({ userDetails, setUserDetails }) {
     return (
@@ -12,6 +14,7 @@ export default function App({ userDetails, setUserDetails }) {
                 </header>
             </div>
             <div className="container">
+                <ToastContainer></ToastContainer>
                 <main className="sidebar">
                     <Dashboard userDetails={userDetails} />
                 </main>

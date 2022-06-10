@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import { toast, Slide } from "react-toastify";
 
 export default function SessionDetails({ userDetails }) {
     const { sessionId } = useParams();
@@ -13,7 +13,40 @@ export default function SessionDetails({ userDetails }) {
 
     const history = useHistory();
 
-    const routeChange = () => {
+    const successToast = () => {
+        toast.success("🐶 Signed up! Time to be in the present.", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            transition: Slide
+        });
+    };
+
+    const errorToast = () => {
+        toast.error("You've already joined this class. Om. 🧘🏽 🧘🏽‍♀️", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            transition: Slide
+        });
+    };
+
+    const routeChange = (isError) => {
+        console.log("Error in routeChange: ", isError);
+        if (isError) {
+            errorToast();
+        } else {
+            successToast();
+        }
+
         let path = `/`;
         history.push(path);
     };
@@ -43,6 +76,8 @@ export default function SessionDetails({ userDetails }) {
         console.log("Submitted values: ");
         console.log(values);
 
+        let isError = false;
+
         async function submit() {
             // POST request using fetch with async/await
             const requestOptions = {
@@ -51,6 +86,7 @@ export default function SessionDetails({ userDetails }) {
                 body: JSON.stringify(values),
             };
 
+            // TODO remove later
             console.log("requestOptions: ");
             console.log(requestOptions);
 
@@ -64,14 +100,20 @@ export default function SessionDetails({ userDetails }) {
                         // get error message from body or default to response status
                         console.log("Error: " + data.message || response.status);
                         const error = (data && data.message) || response.status;
+
+                        // Set isError to true to show error toast
+                        isError = true;
+                        routeChange(isError);
                         return Promise.reject(error);
                     }
                 })
+                .then(() => {
+                    routeChange(isError);
+                    console.log("Route changed");
+                })
                 .catch((error) => {
-                    console.error("There was an error!", error);
+                    console.error("Error: " + error);
                 });
-            routeChange();
-            console.log("Route changed");
         }
 
         submit();
