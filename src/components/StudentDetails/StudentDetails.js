@@ -27,22 +27,26 @@ function StudentSessions({ student, studentId }) {
 
     return (
         <div className="session-container">
-            {studentSessions.map((session) => (
-                <div key={session.sessionId}>
-                    <h3>
-                        <span className="session-name">{session.sessionName}</span> with{" "}
-                        <span className="instructor-name">{session.instructorFirstName}</span>
-                    </h3>
-                    <ul>
-                        <li>
-                            <TbClock /> {moment(session.sessionTime, "HH:mm").format("hh:mmA").toString()}
-                        </li>
-                        <li>
-                            <BsCalendarDate /> {moment(session.sessionDate).format("D MMM YYYY").toString()}
-                        </li>
-                    </ul>
-                </div>
-            ))}
+            {studentSessions.map((session) => {
+                return (
+                    moment(session.sessionDate + "T" + session.sessionTime).isAfter(moment()) && (
+                        <div key={session.sessionId}>
+                            <h3>
+                                <span className="session-name">{session.sessionName}</span> with{" "}
+                                <span className="instructor-name">{session.instructorFirstName}</span>
+                            </h3>
+                            <ul>
+                                <li>
+                                    <TbClock /> {moment(session.sessionTime, "HH:mm").format("hh:mmA").toString()}
+                                </li>
+                                <li>
+                                    <BsCalendarDate /> {moment(session.sessionDate).format("D MMM YYYY").toString()}
+                                </li>
+                            </ul>
+                        </div>
+                    )
+                );
+            })}
         </div>
     );
 }
